@@ -16,5 +16,11 @@ public class Main {
 		contato.setDataCadastro(new Date());
 		
 		contatoDao.save(contato);
+		
+		//VISUALIZAÇÃO dos registros do banco de dados ***TODOS***
+		
+		for (Contato c : contatoDao.getContatos()) {
+			System.out.println("Contato: " + c.getNome() +", Idade: " + c.getIdade() +", Data do cadastro: "+ c.getDataCadastro());
+		}
 	}
 }
