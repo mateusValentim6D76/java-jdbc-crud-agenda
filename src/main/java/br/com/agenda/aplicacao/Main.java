@@ -15,7 +15,17 @@ public class Main {
 		contato.setIdade(54);
 		contato.setDataCadastro(new Date());
 		
-		contatoDao.save(contato);
+		//contatoDao.save(contato);
+		
+		//Atualizar contato
+		Contato c1 = new Contato();
+		
+		c1.setNome("Lorena Marquês");
+		c1.setIdade(33);
+		c1.setDataCadastro(new Date());
+		c1.setId(3);
+		
+		contatoDao.update(c1);
 		
 		//VISUALIZAÇÃO dos registros do banco de dados ***TODOS***
 		
