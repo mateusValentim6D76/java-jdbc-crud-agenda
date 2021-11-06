@@ -25,7 +25,13 @@ public class Main {
 		c1.setDataCadastro(new Date());
 		c1.setId(3);
 		
-		contatoDao.update(c1);
+		//contatoDao.update(c1);
+		
+		//Deletar o contato por ID
+		contatoDao.deleteById(8);
+		contatoDao.deleteById(7);
+		contatoDao.deleteById(6);
+		contatoDao.deleteById(5);
 		
 		//VISUALIZAÇÃO dos registros do banco de dados ***TODOS***
 		

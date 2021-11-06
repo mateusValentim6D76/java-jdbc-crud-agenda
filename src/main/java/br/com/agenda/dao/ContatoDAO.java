@@ -96,40 +96,68 @@ public class ContatoDAO {
 	}
 
 	public void update(Contato contatos) {
-		
+
 		String sql = "UPDATE contatos SET nome = ?, idade = ? , datacadastro = ? WHERE id = ?";
-		
+
 		Connection conn = null;
 		PreparedStatement pstm = null;
-		
+
 		try {
-			//Criar conexão com o banco
+			// Criar conexão com o banco
 			conn = ConnectionFactory.createConnectionToMySql();
-			
-			//Criar classe para executar a query
+
+			// Criar classe para executar a query
 			pstm = conn.prepareStatement(sql);
-			
-			//Add valores para atualizar
+
+			// Add valores para atualizar
 			pstm.setString(1, contatos.getNome());
 			pstm.setInt(2, contatos.getIdade());
 			pstm.setDate(3, new Date(contatos.getDataCadastro().getTime()));
-			
-			//Qual ID do registro deseja atualizar ?
+
+			// Qual ID do registro deseja atualizar ?
 			pstm.setInt(4, contatos.getId());
-			
-			//Executar a query
+
+			// Executar a query
 			pstm.execute();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(pstm != null) {
+				if (pstm != null) {
 					pstm.close();
 				}
-				if(conn != null) {
+				if (conn != null) {
 					conn.close();
 				}
-			}catch (Exception e) {
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void deleteById(int id) {
+		String sql = "DELETE from contatos WHERE id = ?";
+
+		Connection conn = null;
+
+		PreparedStatement pstm = null;
+
+		try {
+			conn = ConnectionFactory.createConnectionToMySql();
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, id);
+			pstm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+				if (pstm != null) {
+					pstm.close();
+				}
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
